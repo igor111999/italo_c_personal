@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <title>Italo Personal</title>
+</head>
+<body style="background-color:  rgb(51, 48, 48)">
+    <nav class="menu-container" id="home">
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <div class="menu-item">
+            <div class="menu-text">
+                <a href="#home"><img src="{{ url_for('static', filename='imgs/logo.png') }}" style="width: 100%;"></a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="card-content">
+            <span class="icon"></span>
+            </div>
+            <div class="menu-text">
+            Início
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="card-content">
+            <a href="#resultados" style="text-decoration: none;">Resultados</a>
+            </div>
+            <div class="menu-text">
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="card-content">
+            <a href="#Treinos" style="text-decoration: none;">Treinos</a>
+            </div>
+            <div class="menu-text">
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="card-content">
+            <a href="#Dietas" style="text-decoration: none;">Dietas</a>
+            </div>
+            <div class="menu-text">
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="card-content">
+            <a href="#sobre" style="text-decoration: none;">Sobre</a>
+            </div>
+            <div class="menu-text">
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="card-content">
+                <style>
+                    .popup-container {
+                        display: none;
+                        position: fixed;
+                        z-index: 1;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.5); /* Semi-transparent background overlay */
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .caixa_popup {
+                        background-color: transparent;
+                        padding: 20px;
+                        border: 1px solid #888;
+                        width: 30%;
+                        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+                        text-align: center;
+                        
+                    main{
+                        display: flex;
+                        width: 100vw;
+                        height: 100vh;
+                        justify-content: center;
+                        align-items: center;
+                        animation: fadeIn 2s ease-in-out;
+                    }
+
+                    .container{
+                        display: flex;
+                        flex-direction: column;
+                        background: rgb(255,198,0);
+                        width: 300px;
+                        height: 450px;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        border-radius: 20px;
+                        box-shadow: 0 0 10px black;
+                    }
+
+                    .container2{
+                        display: flex;
+                        flex-direction: column;
+                        background: blue;
+                        width: 300px;
+                        height: 450px;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        border-radius: 20px;
+                        box-shadow: 0 0 10px black;
+                    }
+
+
+
+                    .title{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 60%;
+                        height: 30px;
+                        font: bold 1.5rem serif;
+                        margin-bottom: 20px;
+                        color: #000;
+                    }
+
+
+                    .input {
+                        display: flex;
+                        width: 150px;
+                        height: 20px;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    .input input {
+                        width: 100px;
+                        height: 30px;
+                        border-radius: 5px;
+                        border:none;
+                        outline: 0;
+                        font: bold 1.5rem serif;
+                        text-align: center;
+                    }
+
+                    .input label {
+                        font: bold 1.5rem serif;
+                        color: #000;
+                    }
+                    .calcu{
+                        width: 50px;
+                        height: 30px;
+                        font: bold 1.2rem serif;
+                        background: #000;
+                        color: rgb(255,198,0);
+                        outline: none;
+                        border-radius: 5px;
+                    }
+
+                    .cal{
+                        margin:20%
+                        width: 100px;
+                        height: 30px;
+                        font: bold 1.2rem serif;
+                        background: #000;
+                        color: red;
+                        outline: none;
+                        border-radius: 5px;
+                    }
+
+                    button{
+                        width: 150px;
+                        height: 30px;
+                        font: bold 1.2rem serif;
+                        background: #000;
+                        color: rgb(255,198,0);
+                        outline: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+
+                    .result{
+                        display: flex;
+                        margin-top: 20px;
+                        align-items: center;
+                        width: 250px;
+                        height: 200px;
+                        border-radius: 5px;
+                        font: italic 1.5rem serif;
+                        box-shadow: 0px 0px 10px black;
+                        background: #000;
+                        color: rgb(255,198,0);
+                        padding: 20px;
+                        box-sizing: border-box;
+                        user-select: none;
+                    }
+
+                    .result3{
+                        display: flex;
+                        margin-top: 20px;
+                        align-items: center;
+                        width: 200px;
+                        height: 70px;
+                        border-radius: 5px;
+                        font: italic 1.5rem serif;
+                        box-shadow: 0px 0px 10px black;
+                        background: #000;
+                        color: rgb(255,198,0);
+                        padding: 20px;
+                        box-sizing: border-box;
+                        user-select: none;
+                    }
+                    @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.8);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                        }
+                    }
+                </style>
+                <a id="abrir_popup" >Imc</a>
+                    <div id="popup-container" class="popup-container">
+                        <div class="caixa_popup">
+                                <div class="container">
+                                    <div class="title"> Calculadora - IMC </div>
+                                    <div class="input">
+                                        <label>Nome:</label>
+                                        <input type="text" id='nome'>
+                                    </div>
+                                    <div class="input">
+                                        <label>Altura:</label>
+                                        <input type="number" id='altura'>
+                                    </div>
+                                    <div class="input">
+                                        <label>Peso:</label>
+                                        <input type="number" id='peso'>
+                                    </div>
+                                    <button id='calcular'>Calcular</button>
+                                    <div class="result" id='resultado'></div>
+                                    <button id="fechar-popup">Close</button>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="menu-text"></div>
+        </div>
+        <div class="menu-item">
+            <div class="card-content">
+            <a href="#" style="text-decoration: none;">Loja</a>
+            </div>
+            <div class="menu-text">
+            </div>
+        </div>
+    </nav>
+
+    <div style="height: 300px;">
+        <img src="{{ url_for('static', filename='imgs/personal.png') }}" style="width: 100%;">
+    </div>
+    <h3 class="b-padding-16 b-text-light-grey"></h3>
+    <div class="b-row-padding" style="margin:0 -16px">
+            <div class="b-half b-margin-bottom">
+                <ul class="b-ul b-white b-center b-opacity b-hover-opacity-off">
+                    <li class="b-dark-grey b-xlarge b-padding-32">Área de Atuação</li>
+                    <li class="b-padding-16">Educador Físico</li>
+                    <li class="b-padding-16">Instrutor de Capoeira</li>
+                    <li class="b-padding-16">Instrutor de Pilates</li>
+                </ul>
+            </div>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel-track" id="carousel">
+            <div class="card">
+                <h5></h5>
+               <img src="{{ url_for('static', filename='imgs/personal.png') }}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/capoeira.png')}}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/pilates.png')}}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/image.png')}}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/f.png') }}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/e.png') }}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/a.png') }}">
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/i.png') }}">
+                <p></p>
+            </div>
+            <div class="card">
+                <h5></h5>
+                <img src="{{ url_for('static', filename='imgs/l.png') }}">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <h3 class="b-padding-16 b-text-light-grey"></h3>
+    <br>
+    <br>
+    <br>
+    <div class="b-row-padding" style="margin:0 -16px">
+            <div class="b-half b-margin-bottom">
+                <ul class="b-ul b-white b-center b-opacity b-hover-opacity-off">
+                    <li class="b-dark-grey b-xlarge b-padding-32" id="Treinos">Treinos</li>
+                    <li class="b-padding-16">Treinos Personalizados</li>
+                    <li class="b-padding-16">Treinos Individualizados</li>
+                    <li class="b-padding-16">Avaliação Física</li>
+                    <li class="b-padding-16">Aulas de Capoeira</li>
+                    <li class="b-padding-16">Aulas de Pilates</li>
+                    <li class="b-light-grey b-padding-24">
+                        <button class="b-button b-white b-padding-large b-hover-black">
+                            <a href="https://wa.me/message/P7N7MZDTIBDPM1" style="text-decoration: none;"> Consulte os valores</a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    
+    </div>
+    <section style="display: inline-block;"id="sobre">
+        <h3 style="color: #fff;">
+                <i>Para aqueles que não acompanham meu trabalho, sou Educador físico, apaixonado por esporte. Sempre ativo e praticante de diversas modalidades esportivas.
+                <p>Hoje atuo como Personal Trainee, Professor de Pilates e Instrutor de Capoeira do qual também ministro aulas.
+                <p><h3 style="color: darkgoldenrod;">Resultados garantidos! É isso mesmo, resultados garantidos! Meus alunos comprovam isso.</h3>
+                <p>Vem comigo, sem loucuras, sem promessas milagrosas. Inicialização com métodos, periodização de treino e acompanhamento completo do seu desenvolvimento particular. Estou aqui com intuito de mostrar que você também é capaz de mudar sua própria história. Te ensino, incentivo e te mostro o caminho para o autocuidado.
+                Comigo você escolhe onde quer treinar:
+                </p>Academia, estúdio, em casa, áreas de lazer e esporte. Musculação, treinos funcionais, treinos caseiros, Pilates, Capoeira. E tem mais.</p>
+                <p><h1 style="background-color:darkgoldenrod;"><a href="#" style="text-decoration: none;"> Vamos juntos planejar essa mudança?</a></h1></p></i>
+        </h3>
+    </section>
+
+    <div class="carousel-container" id="resultados">
+    <div class="carousel-track" id="carousel">
+        <div class="card">
+            <h5></h5>
+            <img src="{{ url_for('static', filename='imgs/marcia.png')}}">
+            <p></p>
+        </div>
+        <div class="card">
+            <h5></h5>
+            <img src="{{ url_for('static', filename='imgs/10k.png') }}">
+            <p></p>
+        </div>
+        <div class="card">
+            <h5></h5>
+            <img src="{{ url_for('static', filename='imgs/11k.png') }}">
+            <p></p>
+        </div>
+        <div class="card">
+            <h5></h5>
+            <img src="{{ url_for('static', filename='imgs/15k.png') }}">
+        </div>
+        <div class="card">
+            <h5></h5>
+            <img src="{{ url_for('static', filename='imgs/20k.png') }}">
+        </div>
+    </div>
+    </div>
+
+    <div>
+        <style>
+            .card-container {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .card-opiniao {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                padding: 25px;
+                width: 300px;
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                &:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                }
+            }
+            .user-img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%; /* Imagem circular */
+                object-fit: cover;
+                margin-bottom: 15px;
+                border: 3px solid #007bff;
+            }
+            .user-name {
+                font-size: 1.2rem;
+                color: #333;
+                margin-bottom: 5px;
+            }
+            .stars {
+                color: #ffc107; /* Cor das estrelas */
+                font-size: 1.1rem
+        </style>
+        <div class="card-container">
+            <div class="card-opiniao">
+                <h2 class="user-name">Deise</h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="opinion-text">"Ítalo é um excelente profissional sabe da confiança que tenho em seu trabalho, sabe o quanto tem me ajudado, muito obrigada por tudo"</p
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card-opiniao">
+                <h2 class="user-name">Marcia Oliveira</h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="opinion-text">
+                    O que dizer desse profissional  que me pegou na minha "pior fase", onde vivia cheia de limitações,  dores, medos, e me fez ver que seria possível  fazer a virada de chave.Hoje com quase 1 ano de acompanhamento me sinto muito bem acompanhada nos treinos,
+                    pois  você respeita os limites, incentiva no tempo certo e comemora cada conquista junto. 
+                    Isso não tem preço.Obrigada  por não  desistir  de mim, quando nem eu mais 
+                    acreditava que seria possível
+                </p
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card-opiniao">
+                <h2 class="user-name">Iane</h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="opinion-text">" O que eu tenho que falar sobre o trabalho dele Ele é comunicativo ele ele organiza as aulas antes variedade de exercício ele tem atenção às diferenças dos alunos exemplo quando elas não estão sentindo bem incentiva cada aluno participar das atividades do jeito que elas podem etc.      só tenho q agradecer   E parabenizar pelo trabalho 🙏</p
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card-container">
+            <div class="card-opiniao">
+                <h2 class="user-name">Ana Silva</h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="opinion-text">"Excelente produto!"</p
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card-opiniao">
+                <h2 class="user-name">Telma Lemes </h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="opinion-text">Faço aulas com o Italo há 8 meses e desde então percebi uma melhora no meu condicionamento físico e fortalecimento muscular.
+Italo é um professor excelente, muito competente e dedicado... E não  mede esforços para bem nos atender.
+Acho muito importante fazer aulas com um personal que atenda as necessidades de cada aluno, ensinando a forma correta de fazer cada exercício, inclusive para evitar lesões.
+O Italo sempre procura o melhor método dentro dos seus conhecimentos que sempre são atualizados, atender as necessidades dos seus alunos.
+Tudo isso reflete na evolução que eu pessoalmente tive sendo sua aluna."</p
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card-opiniao">
+                <h2 class="user-name">Ana Silva</h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="opinion-text">"Excelente produto!"</p
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer>
+        <p>&copy; 2025  By Igor Carvalho. Todos os direitos reservados.</p>
+        <p>
+            <a href="/privacidade">Política de Privacidade</a> |
+            <a href="/termos">Termos de Uso</a> |
+            <a href="/.com">Contato</a>
+        </p>
+        <address>
+            <small>Endereço: Coluna - MG</small>
+        </address>
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
