@@ -1,0 +1,166 @@
+.popup-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background overlay */
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa_popup {
+    background-color: transparent;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+
+    main {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        background: rgb(255, 198, 0);
+        width: 300px;
+        height: 450px;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 20px;
+        box-shadow: 0 0 10px black;
+    }
+
+    .container2 {
+        display: flex;
+        flex-direction: column;
+        background: blue;
+        width: 300px;
+        height: 450px;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 20px;
+        box-shadow: 0 0 10px black;
+    }
+
+
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        height: 30px;
+        font: bold 1.5rem serif;
+        margin-bottom: 20px;
+        color: #000;
+    }
+
+
+    .input {
+        display: flex;
+        width: 150px;
+        height: 20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .input input {
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+        outline: 0;
+        font: bold 1.5rem serif;
+        text-align: center;
+    }
+
+    .input label {
+        font: bold 1.5rem serif;
+        color: #000;
+    }
+
+    .calcu {
+        width: 50px;
+        height: 30px;
+        font: bold 1.2rem serif;
+        background: #000;
+        color: rgb(255, 198, 0);
+        outline: none;
+        border-radius: 5px;
+    }
+
+    .cal {
+        margin: 20% width: 100px;
+        height: 30px;
+        font: bold 1.2rem serif;
+        background: #000;
+        color: red;
+        outline: none;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 150px;
+        height: 30px;
+        font: bold 1.2rem serif;
+        background: #000;
+        color: rgb(255, 198, 0);
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .result {
+        display: flex;
+        margin-top: 20px;
+        align-items: center;
+        width: 250px;
+        height: 200px;
+        border-radius: 5px;
+        font: italic 1.5rem serif;
+        box-shadow: 0px 0px 10px black;
+        background: #000;
+        color: rgb(255, 198, 0);
+        padding: 20px;
+        box-sizing: border-box;
+        user-select: none;
+    }
+
+    .result3 {
+        display: flex;
+        margin-top: 20px;
+        align-items: center;
+        width: 200px;
+        height: 70px;
+        border-radius: 5px;
+        font: italic 1.5rem serif;
+        box-shadow: 0px 0px 10px black;
+        background: #000;
+        color: rgb(255, 198, 0);
+        padding: 20px;
+        box-sizing: border-box;
+        user-select: none;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
