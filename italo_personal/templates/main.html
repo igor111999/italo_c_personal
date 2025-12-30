@@ -90,8 +90,75 @@
         </div>
         <div class="menu-item">
             <div class="card-content">
-                <a id="abrir_popup" >Loja</a>
-                    <div id="popup-container" class="popup-container">
+                <style >
+                    .popup-container {
+                        display: none;
+                        position: fixed;
+                        z-index: 1;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.5); /* Semi-transparent background overlay */
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .caixa_popup {
+                        background-color: transparent;
+                        padding: 20px;
+                        border: 1px solid #888;
+                        width: 30%;
+                        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+                        text-align: center;
+
+                    .container{
+                        display: flex;
+                        flex-direction: column;
+                        background: rgb(255,198,0);
+                        width: 300px;
+                        height: 450px;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        border-radius: 20px;
+                        box-shadow: 0 0 10px black;
+                    }
+
+                    .title{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 60%;
+                        height: 30px;
+                        font: bold 1.5rem serif;
+                        margin-bottom: 20px;
+                        color: #000;
+                    }
+
+                    button{
+                        width: 150px;
+                        height: 30px;
+                        font: bold 1.2rem serif;
+                        background: #000;
+                        color: rgb(255,198,0);
+                        outline: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+
+                    @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.8);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                        }
+                    }
+                </style>
+                <a id="abrir_popu" >Loja</a>
+                    <div id="popu-container" class="popup-container">
                         <div class="caixa_popup">
                             <div class="container">
                                 <div class="title">
@@ -106,7 +173,7 @@
                                         <br><img src="{{ url_for('static', filename='imgs/OV.jpg') }}" style="width: 35%;">
                                     </a>
                                 </div> 
-                                <button id="fechar-popup">Close</button>   
+                                <button id="fechar-popu">Close</button>   
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,19 @@ fechar_popup.addEventListener("click", () => {
     popupContainer.style.display = "none";
 });
 
+const abrir_popu = document.getElementById("abrir_popu");
+const fechar_popu = document.getElementById("fechar-popu");
+const popuContainer = document.getElementById("popu-container");
+
+abrir_popu.addEventListener("click", () => {
+    popuContainer.style.display = "flex";
+});
+
+
+fechar_popu.addEventListener("click", () => {
+    popuContainer.style.display = "none";
+});
+
 const calcular = document.getElementById('calcular');
 
 function imc() {
